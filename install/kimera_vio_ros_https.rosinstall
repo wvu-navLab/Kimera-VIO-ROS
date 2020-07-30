@@ -13,7 +13,7 @@
 - git:
     local-name: gtsam
     uri: https://github.com/borglab/gtsam.git
-    version: master
+    version: develop
     # Last tested commit: 342f30d148fae84c92ff71705c9e50e0a3683bda
 - git:
     local-name: opencv3_catkin
@@ -45,12 +45,12 @@
     # Last tested commit: d48028de5b27a3cf51bd1cd538e4c54ac568154d
 - git:
     local-name: Kimera-VIO
-    uri: https://github.com/MIT-SPARK/Kimera-VIO.git
+    uri: https://github.com/wvu-navLab/Tunnel-Kimera-VIO.git
     version: master
     # Last tested commit: 2efbc572940dd56b8c6caf6d159cd7afd390d28e
 - git:
     local-name: Kimera-VIO-ROS
-    uri: https://github.com/MIT-SPARK/Kimera-VIO-ROS.git
+    uri: https://github.com/wvu-navLab/Tunnel-Kimera-VIO-ROS.git
     version: master
 - git:
     local-name: glog_catkin
