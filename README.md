@@ -4,10 +4,13 @@
 
 ```bash
 sudo apt-get install ros-melodic-image-geometry ros-melodic-pcl-ros ros-melodic-cv-bridge
+# ubuntu 16: sudo apt-get install ros-kinetic-image-geometry ros-kinetic-pcl-ros ros-kinetic-cv-bridge
 
 sudo apt-get install -y --no-install-recommends apt-utils
 
 sudo apt-get install -y cmake build-essential unzip pkg-config autoconf libboost-all-dev libjpeg-dev libpng-dev libtiff-dev libvtk6-dev libgtk-3-dev libatlas-base-dev gfortran libparmetis-dev python-wstool python-catkin-tools
+
+# ubuntu 16: sudo apt-get install -y cmake build-essential unzip pkg-config autoconf libboost-all-dev libjpeg-dev libpng-dev libtiff-dev libvtk5-dev libgtk2.0-dev libatlas-base-dev gfortran libparmetis-dev python-wstool python-catkin-tools
 
 sudo apt-get install libtbb-dev
 
@@ -15,6 +18,9 @@ mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 catkin init
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
+# On Ubuntu 16.04:
+# catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release -DGTSAM_USE_SYSTEM_EIGEN=ON
+
 catkin config --merge-devel
 echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 
@@ -29,8 +35,11 @@ catkin build
 
 # for tunnel sim:
 # 1. Run simulator.sh (launch mavros_posix_sitl.launch)
+    ./simulator.sh
 # 2. launch gazebo odom truth package (has static tfs for cameras)
-# 3. launch kimera_vio_ros_iris.launch
+    roslaunch stone-mine-gazebo-truth drone_gazebo_truth_odom.launch
+# 3. launch kimera_vio
+    roslaunch tunnel_kimera_vio_ros kimera_vio_ros_iris.launch 
 ```
 
 
