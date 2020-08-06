@@ -1,3 +1,48 @@
+# SIMPLE BUILD INSTRUCTIONS
+
+## Do not mix with catkin_make
+
+```bash
+sudo apt-get install ros-melodic-image-geometry ros-melodic-pcl-ros ros-melodic-cv-bridge
+# ubuntu 16: sudo apt-get install ros-kinetic-image-geometry ros-kinetic-pcl-ros ros-kinetic-cv-bridge
+
+sudo apt-get install -y --no-install-recommends apt-utils
+
+sudo apt-get install -y cmake build-essential unzip pkg-config autoconf libboost-all-dev libjpeg-dev libpng-dev libtiff-dev libvtk6-dev libgtk-3-dev libatlas-base-dev gfortran libparmetis-dev python-wstool python-catkin-tools
+
+# ubuntu 16: sudo apt-get install -y cmake build-essential unzip pkg-config autoconf libboost-all-dev libjpeg-dev libpng-dev libtiff-dev libvtk5-dev libgtk2.0-dev libatlas-base-dev gfortran libparmetis-dev python-wstool python-catkin-tools
+
+sudo apt-get install libtbb-dev
+
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin init
+catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
+# On Ubuntu 16.04:
+# catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release -DGTSAM_USE_SYSTEM_EIGEN=ON
+
+catkin config --merge-devel
+echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+
+cd ~/catkin_ws/src
+git clone https://github.com/wvu-navLab/SRC2-Kimera-VIO-ROS.git
+wstool init
+wstool merge SRC2-Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall
+wstool update
+
+cd ~/catkin_ws/src/
+catkin build
+
+# for tunnel sim:
+# 1. Run simulator.sh (launch mavros_posix_sitl.launch)
+    ./simulator.sh
+# 2. launch gazebo odom truth package (has static tfs for cameras)
+    roslaunch stone-mine-gazebo-truth drone_gazebo_truth_odom.launch
+# 3. launch kimera_vio
+    roslaunch tunnel_kimera_vio_ros kimera_vio_ros_iris.launch 
+```
+
+
 # Kimera-VIO-ROS
 
 ROS Wrapper for [Kimera](https://github.com/MIT-SPARK/Kimera).
@@ -42,7 +87,6 @@ sudo apt-get install -y \
       cmake build-essential unzip pkg-config autoconf \
       libboost-all-dev \
       libjpeg-dev libpng-dev libtiff-dev \
-# Use libvtk5-dev, libgtk2.0-dev in ubuntu 16.04 \
       libvtk6-dev libgtk-3-dev \
       libatlas-base-dev gfortran \
       libparmetis-dev \
@@ -70,17 +114,17 @@ echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 # Clone repo
 cd ~/catkin_ws/src
 # For ssh:
-git clone git@github.com:MIT-SPARK/Kimera-VIO-ROS.git
+#git clone git@github.com:MIT-SPARK/Kimera-VIO-ROS.git
 # For https:
-# git clone https://github.com/MIT-SPARK/Kimera-VIO-ROS.git
+git clone https://github.com/wvu-navLab/SRC2-Kimera-VIO-ROS.git
 
 # Install dependencies from rosinstall file using wstool
 wstool init # Use unless wstool is already initialized
 
 # For ssh:
-wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_ssh.rosinstall
+#wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_ssh.rosinstall
 # For https
-# wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall
+wstool merge SRC2-Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall
 
 # Finally, download and update repos:
 wstool update
