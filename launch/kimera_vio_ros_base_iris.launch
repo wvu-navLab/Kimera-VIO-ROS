@@ -15,7 +15,7 @@
 
   <!-- If true, SparkVio will log output of all modules to the
        'log_output_path' location. -->
-  <arg name="log_output" default="true"/>
+  <arg name="log_output" default="false"/>
   <arg name="log_output_path"
        default="$(find kimera_vio_ros)/output_logs/"/>
   <!-- If true, log ground-truth poses to a csv file using the
@@ -40,7 +40,7 @@
   <arg name="left_cam_info_topic"               default="/stereo/left/camera_info"/>
   <arg name="right_cam_topic"                   default="/stereo/right/image_raw"/>
   <arg name="right_cam_info_topic"              default="/stereo/right/camera_info"/>
-  <arg name="imu_topic"                         default="/mavros/imu/data"/>
+  <arg name="imu_topic"                         default="/mavros/imu/data_raw"/>
   <!-- Empty string ("") means no ground-truth available. Used for init if
    requested to do ground-truth initialization. -->
   <arg name="odometry_ground_truth_topic"       default="/odometry/truth"/>
@@ -64,7 +64,7 @@
   <arg name="run_stereo_dense"     default="false"/>
 
   <!-- Launch main node  -->
-  <node name="kimera_vio_ros_node" pkg="kimera_vio_ros" type="kimera_vio_ros_node"
+  <node name="kimera_vio_ros_node" pkg="kimera_vio_ros" type="kimera_vio_ros_node" respawn="true"
         output="screen" ns="kimera_vio_ros"
         args="--use_lcd=$(arg use_lcd)
               --vocabulary_path=$(arg path_to_vocab)
