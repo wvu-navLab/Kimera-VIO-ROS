@@ -25,9 +25,9 @@ catkin config --merge-devel
 echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 
 cd ~/catkin_ws/src
-git clone https://github.com/wvu-navLab/SRC2-Kimera-VIO-ROS.git
+git clone https://github.com/wvu-navLab/Tunnel-Kimera-VIO-ROS.git
 wstool init
-wstool merge SRC2-Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall
+wstool merge Tunnel-Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall
 wstool update
 
 cd ~/catkin_ws/src/
