@@ -37,9 +37,9 @@ catkin build
 # 1. Run simulator.sh (launch mavros_posix_sitl.launch)
     ./simulator.sh
 # 2. launch gazebo odom truth package (has static tfs for cameras)
-    roslaunch stone-mine-gazebo-truth drone_gazebo_truth_odom.launch
+    roslaunch gazebo_truth_odom drone_gazebo_truth_odom.launch
 # 3. launch kimera_vio
-    roslaunch tunnel_kimera_vio_ros kimera_vio_ros_iris.launch 
+    roslaunch kimera_vio_ros kimera_vio_ros_iris.launch 
 ```
 
 
