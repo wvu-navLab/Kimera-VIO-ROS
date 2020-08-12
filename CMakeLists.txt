@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(tunnel_kimera_vio_ros)
+project(kimera_vio_ros)
 
 find_package(catkin_simple REQUIRED)
 
