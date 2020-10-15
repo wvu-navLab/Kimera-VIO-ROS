@@ -1,14 +1,14 @@
 <launch>
-  <arg name="dataset_name" default="Euroc"/>
+  <arg name="dataset_name" default="iris"/>
 
   <!-- Frame IDs -->
-  <arg name="base_link_frame_id" value="iris/base_link"/>
-  <arg name="left_cam_frame_id"  value="iris/left_stereo_optical"/>
-  <arg name="right_cam_frame_id" value="iris/right_stereo_optical"/>
+  <arg name="base_link_frame_id" value="base_link"/>
+  <arg name="left_cam_frame_id"  value="camera_fisheye1_optical_frame"/>
+  <arg name="right_cam_frame_id" value="camera_fisheye2_optical_frame"/>
 
   <!-- ROS Topics -->
-  <arg name="left_cam_info_topic"  value="/stereo/left/camera_info"/>
-  <arg name="right_cam_info_topic" value="/stereo/right/camera_info"/>
+  <arg name="left_cam_info_topic"  value="/camera/left/camera_info"/>
+  <arg name="right_cam_info_topic" value="/camera/right/camera_info"/>
 
   <node pkg="kimera_vio_ros" type="camera_info_yamlizer_node.py"
         name="cam_info_yamelizer" output="screen">
