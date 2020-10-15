@@ -27,8 +27,8 @@
 
   <!-- Frame IDs -->
   <arg name="base_link_frame_id" value="iris/base_link"/>
-  <arg name="left_cam_frame_id"  value="iris/left_stereo_optical"/>
-  <arg name="right_cam_frame_id" value="iris/right_stereo_optical"/>
+  <arg name="left_cam_frame_id"  value="camera_fisheye1_optical_frame"/>
+  <arg name="right_cam_frame_id" value="camera_fisheye2_optical_frame"/>
 
   <!-- Perform stereo dense reconstruction? -->
   <arg name="run_stereo_dense"     default="false"/>
@@ -36,10 +36,10 @@
     <!-- StereoSGBM -->
     <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node" >
       <param name="input_camera_info_from_ros_params" value="false"/>
-      <param name="first_camera_namespace"  value="/stereo/left"/>
-      <param name="second_camera_namespace" value="/stereo/right"/>
-      <param name="first_output_frame"      value="iris/right_stereo_optical"/>
-      <param name="second_output_frame"     value="iris/left_stereo_optical"/>
+      <param name="first_camera_namespace"  value="/camera/left"/>
+      <param name="second_camera_namespace" value="/camera/right"/>
+      <param name="first_output_frame"      value="camera_fisheye1_optical_frame"/>
+      <param name="second_output_frame"     value="camera_fisheye2_optical_frame"/>
 
       <param name="depth/use_sgbm"          value="true"/>
       <param name="depth/do_median_blur"    value="false"/>
@@ -50,10 +50,10 @@
       <param name="publish_tf"              value="true"/>
 
 
-      <remap from="raw/first/image"         to="/stereo/left/image_raw"/>
-      <remap from="raw/second/image"        to="/stereo/right/image_raw"/>
-      <remap from="raw/first/camera_info"   to="/stereo/left/camera_info"/>
-      <remap from="raw/second/camera_info"  to="/stereo/right/camera_info"/>
+      <remap from="raw/first/image"         to="/camera/left/image_raw"/>
+      <remap from="raw/second/image"        to="/camera/right/image_raw"/>
+      <remap from="raw/first/camera_info"   to="/camera/left/camera_info"/>
+      <remap from="raw/second/camera_info"  to="/camera/right/camera_info"/>
     </node>
   </group>
 
