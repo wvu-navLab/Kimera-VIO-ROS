@@ -14,7 +14,7 @@
        if="$(arg log_output)"/>
   <!-- Set to true and specify gt_topic if you want to log ground-truth data -->
   <arg name="log_gt_data" default="false"/>
-  <arg name="gt_topic" default="/truth"/>
+  <arg name="gt_topic" default="odometry/truth"/>
 
   <arg name="use_lcd"   default="false"/>
   <arg name="visualize" default="true"/>
@@ -31,7 +31,7 @@
   <arg name="right_cam_frame_id" value="camera_fisheye2_optical_frame"/>
 
   <!-- Perform stereo dense reconstruction? -->
-  <arg name="run_stereo_dense"     default="true"/>
+  <arg name="run_stereo_dense"     default="false"/>
   <group ns="stereo_gray" if="$(arg run_stereo_dense)">
     <!-- StereoSGBM -->
     <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node" >
