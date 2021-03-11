@@ -1,0 +1,16 @@
+<launch>
+  <node pkg="topic_tools" type="relay_field"
+        name="field_relayer"
+        args="/camera/accel/sample /camera/imu sensor_msgs/Imu
+            '{header:
+                {seq: m.data,
+                stamp: {secs: m.data, nsecs: m.data},
+                frame_id: m.data},
+            orientation: m.data,
+            orientation_covariance: m.data,
+            angular_velocity: m.data,
+            angular_velocity_covariance: m.data,
+            linear_acceleration: m.data,
+            linear_acceleration_covariance: m.data}'"/>
+  </node>
+</launch
